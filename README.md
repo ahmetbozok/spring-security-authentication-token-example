@@ -2,9 +2,9 @@
 This is a basic example to authenticate with username and password and generate a token which related with provided user. After generate a token all request will use this token for authentication.
 
 ## Run
-  -mvn clean
-  -mvn intsall
-  -mvn spring-boot:run
+  ** mvn clean
+  ** mvn intsall
+  ** mvn spring-boot:run
 
 ## API information
 First of all you should have some users which are defined in your user db. You can add some users to try authentication token and authorization process from our api but you should disable ".antMatchers("/users/add").hasRole("ADMIN")" and enable "web.ignoring().antMatchers("/users/add");" code blocks in SecurityConfig class to access link to add a new user.
