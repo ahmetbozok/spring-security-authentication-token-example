@@ -1,0 +1,78 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is an user server API.\n",
+    "version": "1.0.0",
+    "title": "User API"
+  },
+  "basePath": "/auth",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/auth/token":{
+      "post":{
+        "tags": [
+          "auth-token"
+        ],
+        "summary": "Authorization API",
+        "operationId": "authentication",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "credential",
+            "in": "body",
+            "description": "Credentials for authentication token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Credential"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfuly generated token",
+            "schema": {
+              "$ref": "#/definitions/AccessToken"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Credential": {
+      "discriminator": "credentials",
+      "type": "object",
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "AccessToken": {
+      "discriminator": "accessToken",
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "expireDate": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
