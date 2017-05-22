@@ -36,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/auth/token");
+        //you should activate this line to access add user API anonymous
+        //web.ignoring().antMatchers("/users/add");
     }
 
     @Override
@@ -50,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //Allow anonymous logins
         .antMatchers("/auth/token").permitAll()
 
+        //you should disable this line to access add user API anonymous
         .antMatchers("/users/add").hasRole("ADMIN")
 
         // All other request need to be authenticated
